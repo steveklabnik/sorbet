@@ -2133,7 +2133,7 @@ enum class PackagerMode {
 
 template <PackagerMode Mode>
 void packageRunCore(core::GlobalState &gs, WorkerPool &workers, absl::Span<ast::ParsedFile> files) {
-    ENFORCE(!gs.runningUnderAutogen, "Packager pass does not run in autogen");
+    ENFORCE(!gs.cacheSensitiveOptions.runningUnderAutogen, "Packager pass does not run in autogen");
 
     Timer timeit(gs.tracer(), "packager");
 

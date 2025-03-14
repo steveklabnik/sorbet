@@ -52,9 +52,9 @@ void setGlobalStateOptions(core::GlobalState &gs, const options::Options &opts) 
     gs.pathPrefix = opts.pathPrefix;
     gs.errorUrlBase = opts.errorUrlBase;
 
-    gs.rbsSignaturesEnabled = opts.rbsSignaturesEnabled;
-    gs.requiresAncestorEnabled = opts.requiresAncestorEnabled;
-    gs.typedSuper = opts.typedSuper;
+    gs.cacheSensitiveOptions.rbsSignaturesEnabled = opts.rbsSignaturesEnabled;
+    gs.cacheSensitiveOptions.requiresAncestorEnabled = opts.requiresAncestorEnabled;
+    gs.cacheSensitiveOptions.typedSuper = opts.typedSuper;
 
     if (opts.silenceErrors) {
         gs.silenceErrors = true;
@@ -168,7 +168,7 @@ core::StrictLevel decideStrictLevel(const core::GlobalState &gs, const core::Fil
         }
     }
 
-    if (gs.runningUnderAutogen) {
+    if (gs.cacheSensitiveOptions.runningUnderAutogen) {
         // Autogen stops before infer but needs to see all definitions
         level = core::StrictLevel::False;
     }

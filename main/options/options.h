@@ -177,15 +177,20 @@ struct Options {
     std::string pathPrefix;
 
     struct CacheSensitiveOptions {
-        bool typedSuper = true;
+        bool typedSuper : 1;
 
         // Enable experimental support for RBS signatures
-        bool rbsSignaturesEnabled = false;
+        bool rbsSignaturesEnabled : 1;
 
         // Experimental feature `requires_ancestor`
-        bool requiresAncestorEnabled = false;
+        bool requiresAncestorEnabled : 1;
 
-        bool runningUnderAutogen = false;
+        bool runningUnderAutogen : 1;
+
+        // In C++20 we can replace this with bit field initializers
+        CacheSensitiveOptions()
+            : typedSuper(true), rbsSignaturesEnabled(false), requiresAncestorEnabled(false),
+              runningUnderAutogen(false) {}
     };
     CacheSensitiveOptions cacheSensitiveOptions;
 

@@ -926,10 +926,6 @@ void readOptions(Options &opts,
         opts.cacheDir = raw["cache-dir"].as<string>();
 
         opts.cacheSensitiveOptions.rbsSignaturesEnabled = raw["enable-experimental-rbs-signatures"].as<bool>();
-        if (opts.cacheSensitiveOptions.rbsSignaturesEnabled && !opts.cacheDir.empty()) {
-            logger->error("--enable-experimental-rbs-signatures is incompatible with --cache-dir. Ignoring cache");
-            opts.cacheDir = "";
-        }
 
         opts.cacheSensitiveOptions.requiresAncestorEnabled = raw["enable-experimental-requires-ancestor"].as<bool>();
 

@@ -52,9 +52,9 @@ void setGlobalStateOptions(core::GlobalState &gs, const options::Options &opts) 
     gs.pathPrefix = opts.pathPrefix;
     gs.errorUrlBase = opts.errorUrlBase;
 
-    gs.cacheSensitiveOptions.rbsSignaturesEnabled = opts.rbsSignaturesEnabled;
-    gs.cacheSensitiveOptions.requiresAncestorEnabled = opts.requiresAncestorEnabled;
-    gs.cacheSensitiveOptions.typedSuper = opts.typedSuper;
+    gs.cacheSensitiveOptions.rbsSignaturesEnabled = opts.cacheSensitiveOptions.rbsSignaturesEnabled;
+    gs.cacheSensitiveOptions.requiresAncestorEnabled = opts.cacheSensitiveOptions.requiresAncestorEnabled;
+    gs.cacheSensitiveOptions.typedSuper = opts.cacheSensitiveOptions.typedSuper;
 
     if (opts.silenceErrors) {
         gs.silenceErrors = true;

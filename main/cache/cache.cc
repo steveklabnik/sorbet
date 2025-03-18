@@ -18,8 +18,9 @@ unique_ptr<OwnedKeyValueStore> maybeCreateKeyValueStore(shared_ptr<::spdlog::log
     // bust all existing caches when we promoted the experimental-at-the-time incremental fast path
     // to the stable version.
     auto flavor = "experimentalfastpath";
-    return make_unique<OwnedKeyValueStore>(make_unique<KeyValueStore>(logger, sorbet_full_version_string, opts.cacheDir,
-                                                                      move(flavor), opts.maxCacheSizeBytes));
+    auto version = fmt::format("{}|{}", sorbet_full_version_string, opts.cacheSensitiveOptions.serialize());
+    return make_unique<OwnedKeyValueStore>(
+        make_unique<KeyValueStore>(logger, version, opts.cacheDir, move(flavor), opts.maxCacheSizeBytes));
 }
 
 namespace {
